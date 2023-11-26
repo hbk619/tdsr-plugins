@@ -42,3 +42,11 @@ you can add it under the commands section
 hbk619.git_status = git status
 ```
 
+### Tab auto complete
+
+If you would like to hear the items shown in the terminal when you press tab to auto complete a path, along
+with what is selected you can add the below to the commands section, provided you are using a zsh terminal
+
+```
+hbk619.tabbing = ^(\(.*\))?➜\s{2}.+✗?
+```
