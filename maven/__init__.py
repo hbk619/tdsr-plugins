@@ -1,4 +1,4 @@
-import maven.parse_maven
+from . import parse_maven
 
 
 def parse_output(lines):
