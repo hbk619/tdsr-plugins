@@ -1,7 +1,6 @@
 # TDSR Plugins
 
-This repo works with [TDSR](https://github.com/tspivey/tdsr) to allow for some easier terminal parsing
-(currently a [pull request](https://github.com/tspivey/tdsr/pull/35))
+This repo works with [TDSR](https://github.com/tspivey/tdsr) to allow for some easier terminal reading of certain commands output.
 
 ## Setup
 
@@ -49,4 +48,13 @@ with what is selected you can add the below to the commands section, provided yo
 
 ```
 hbk619.tabbing = ^(\(.*\))?➜\s{2}.+✗?
+```
+
+### Maven
+
+If you ue maven would like to hear test results as "3 passed, 1 failed. Got thing. Expected something else.
+Test is test thing line 21" add the below to the commands section
+
+```
+hbk619.maven = mvn
 ```
