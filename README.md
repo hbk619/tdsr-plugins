@@ -53,7 +53,7 @@ hbk619.tabbing = ^(\(.*\))?➜\s{2}.+✗?
 ### Maven
 
 If you ue maven would like to hear test results as "3 passed, 1 failed. Got thing. Expected something else.
-Test is test thing line 21" add the below to the commands section
+Test is test thing line 21" or Java compilation errors as "file name.java line 2 column 2 expected ;" add the below to the commands section
 
 ```
 hbk619.maven = mvn

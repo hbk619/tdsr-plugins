@@ -141,3 +141,75 @@ def test_multi_failures():
     lines.reverse()
     results = parse_output(lines)
     assert results == expected
+
+compile = """[INFO]
+[INFO] --- compiler:3.8.0:compile (default-compile) @ project-template ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 13 source files to /Users/blah/code/project2024/target/classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR :
+[INFO] -------------------------------------------------------------
+[ERROR] /Users/blah/code/projec/src/main/java/com/example/project/model/Post.java:[35,5] illegal start of expression
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.789 s
+[INFO] Finished at: 2024-01-19T14:18:09Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:compile (default-compile) on project project-template: Compilation failure
+[ERROR] /Users/blah/code/project2024/src/main/java/com/example/project/model/Post.java:[35,5] illegal start of expression
+[ERROR]
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException"""
+
+
+def test_single_error():
+    expected = ["Post.java", "line 35 column 5", "illegal start of expression"]
+    results = parse_output(compile.split('\n'))
+    assert results == expected
+
+
+multiple = """[INFO]
+[INFO] --- compiler:3.8.0:compile (default-compile) @ project-template ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 13 source files to /Users/blah/code/project/target/classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR :
+[INFO] -------------------------------------------------------------
+[ERROR] /Users/blah/code/project/src/main/java/com/example/project/repository/PostRepository.java:[8,51] ';' expected
+[ERROR] /Users/blah/code/project/src/main/java/com/example/project/model/Post.java:[27,24] ';' expected
+[ERROR] /Users/blah/code/project/src/main/java/com/example/project/model/Post.java:[35,5] illegal start of expression
+[INFO] 3 errors
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.791 s
+[INFO] Finished at: 2024-01-19T14:38:46Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:compile (default-compile) on project project-template: Compilation failure: Compilation failure:
+[ERROR] /Users/blah/code/project/src/main/java/com/example/project/repository/PostRepository.java:[8,51] ';' expected
+[ERROR] /Users/blah/code/project/src/main/java/com/example/project/model/Post.java:[27,24] ';' expected
+[ERROR] /Users/blah/code/project/src/main/java/com/example/project/model/Post.java:[35,5] illegal start of expression
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException"""
+
+
+def test_multiple_error():
+    expected = ["PostRepository.java", "line 8 column 51", "';' expected",
+                "Post.java", "line 27 column 24", "';' expected",
+                "Post.java", "line 35 column 5", "illegal start of expression"]
+    results = parse_output(multiple.split('\n'))
+    assert results == expected
