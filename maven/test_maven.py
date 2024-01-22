@@ -1,4 +1,4 @@
-from . import parse_output
+from .parse_maven import parse_output
 
 failure = """  .   ____          _            __ _ _
 	name: default

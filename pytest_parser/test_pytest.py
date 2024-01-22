@@ -1,4 +1,4 @@
-from pytest_parser.parse_pytest import parse_output
+from .parse_pytest import parse_output
 
 
 lines = """

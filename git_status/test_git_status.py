@@ -1,4 +1,4 @@
-from git_status import parse_output
+from .parse_git_status import parse_output
 
 modified_staged = """On branch my-branchie
 Changes to be committed:

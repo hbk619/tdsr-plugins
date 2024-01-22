@@ -1,4 +1,4 @@
-from listing import parse_output
+from .listing import parse_output
 
 ls = """bin include lib
 '➜  venv git:(plugins) ✗ ls """

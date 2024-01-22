@@ -1,4 +1,4 @@
-from tabbing.tabbing import parse_output
+from .tabbing import parse_output
 
 cd = """bin/ include/ lib/
 '➜  venv git:(plugins) ✗ cd include/'"""
