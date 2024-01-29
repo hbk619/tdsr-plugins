@@ -4,7 +4,8 @@ from logging.handlers import RotatingFileHandler
 logger = logging.getLogger('hbk619-plugins')
 logger.setLevel(logging.INFO)
 
-handler = RotatingFileHandler('hbk619-plugins.log', maxBytes=2000, backupCount=1)
+FIVE_MEG_IN_BYTES = 5000000
+handler = RotatingFileHandler('hbk619-plugins.log', maxBytes=FIVE_MEG_IN_BYTES, backupCount=1)
 handler.setLevel(logging.INFO)
 
 logger.addHandler(handler)
