@@ -58,3 +58,59 @@ Test is test thing line 21" or Java compilation errors as "file name.java line 2
 ```
 hbk619.maven = mvn
 ```
+
+### Custom Voice
+
+If you would like to hear your pytest errors in a voice from ElevenLabs you can use the custom_voice plugin.
+You will need to install the elevenlabs module which if you installed TDSR requirements as a user you can do with:
+
+```
+pip install -U elevenlabs==0.2.27
+```
+
+The way you start TDSR will need to change as you will need an environment variable called VOICE_ID and if the voice is private you will also need one called ELEVENLABS_API
+
+Start TDSR with the below, replacing <your value> with your actual value
+
+```
+VOICE_ID=<your value> ELEVENLABS_API=<your value> ~/tdsr/tdsr
+```
+
+Then configure TDSR in the plugins section as below
+
+```
+hbk619.custom_voice = a
+```
+
+If you would like to make parsing slightly faster and have a consistent command to run pytest
+you can add it under the commands section
+
+```
+hbk619.custom_voice = pytest -x
+```
+
+At the moment it's just pytest it works with, I'm working on a way to say any command in a voice from Elevenlabs.
+
+
+## Custom voice speech server (experimental)
+You can use the ElevenLabs speech server in this repo too, however it will use your quota very quickly so if you have a limited
+amount of api requests be careful! It's also experimental and a bit buggy and there is no way to stop the audio once it starts, you have been warned!
+
+You will need to install the elevenlabs module which if you installed TDSR requirements as a user you can do with:
+
+```
+pip install -U elevenlabs==0.2.27
+```
+
+To use the speech server change the way you start TDSR as below, replacing <your value> with your actual value
+
+```
+VOICE_ID=<your value> ELEVENLABS_API=<your value> ~/tdsr/tdsr --speech-server ~/tdsr/plugin/hbk619/elevenlabs-server.py
+```
+
+If you would like to see what is being sent to ElevenLabs you can enable debugging with an environment variable as below. This will create the 
+log file `~/tdsr/plugins/hbk619/hbk619-plugin.log`
+
+```
+HBK619_DEBUG=true VOICE_ID=<your value> ELEVENLABS_API=<your value> ~/tdsr/tdsr --speech-server ~/tdsr/plugins/hbk619/elevenlabs-server.py
+```
