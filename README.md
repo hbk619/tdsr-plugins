@@ -8,6 +8,12 @@ Clone this repo into TDSR (the below example assumes you have tdsr in your home 
 
 `git clone https://github.com/hbk619/tdsr-plugins ~/tdsr/plugins/hbk619`
 
+The standard way to configure a plugin is with the plugins section defining the key to press with option
+and the command section to optionally define what command you run (this makes it slightly faster to respond)
+
+The plugin name is the folder name (hbk619 in this case) followed by a dot followed by the folder name of the plugin
+you wish to use
+
 ### Pytest
 
 If you would like to use pytest and have feedback as "3 errors. Module not found. 
@@ -52,11 +58,20 @@ hbk619.tabbing = ^(\(.*\))?➜\s{2}.+✗?
 
 ### Maven
 
-If you ue maven would like to hear test results as "3 passed, 1 failed. Got thing. Expected something else.
+If you use maven and would like to hear test results as "3 passed, 1 failed. Got thing. Expected something else.
 Test is test thing line 21" or Java compilation errors as "file name.java line 2 column 2 expected ;" add the below to the commands section
 
 ```
 hbk619.maven = mvn
+```
+
+### Terraform
+
+If you use terraform and would like to hear results of plans or applys as "aws_iam_user.mario will be created" or syntax
+errors as "Error Unsupported block type line 12 Blocks of type "resoure" are not expected here. Did you mean "resource"?" add the below to the commands section
+
+```
+hbk619.terraform = terraform
 ```
 
 ### Custom Voice
