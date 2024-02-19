@@ -1,5 +1,4 @@
 import re
-from ..clipboard import clippy
 
 error_lines = re.compile(r"E\s+(?:\+\s+)?(.*)")
 location_lines = re.compile(r">\s+(?:\+\s+)?(.*)")
