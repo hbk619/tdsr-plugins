@@ -74,6 +74,10 @@ errors as "Error Unsupported block type line 12 Blocks of type "resoure" are not
 hbk619.terraform = terraform
 ```
 
+Terraform often has a lot of output and plugins only receive lines that are visible in the window so it is recommended to maximise
+the window and if that still can't contain all your output, you can use the `--no-color` [flag of Terraform](https://developer.hashicorp.com/terraform/cli/commands/plan)
+and pipe to a file.
+
 ### Custom Voice
 
 If you would like to hear your pytest errors in a voice from ElevenLabs you can use the custom_voice plugin.
